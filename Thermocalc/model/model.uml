@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_U6-7cLkeEeODVf6soNxjVQ" name="Model">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_U6-7cbkeEeODVf6soNxjVQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_U8vO8LkeEeODVf6soNxjVQ" name="Interaction1"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ban4YLkeEeODVf6soNxjVQ" name="Compound">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2y_9wLkpEeODVf6soNxjVQ" name="prop_critical_temperature" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ" aggregation="composite" association="_2zAk0LkpEeODVf6soNxjVQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2y_9wbkpEeODVf6soNxjVQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2y_9wrkpEeODVf6soNxjVQ" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_3DSKILmlEeOtbs0XOV6d5g" name="prop_critical_pressure" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_IKFBELmoEeOtbs0XOV6d5g" name="prop_std_liq_enthalpy_formation" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Enp4oLmnEeOtbs0XOV6d5g" name="prop_std_gas_enthalpy_formation" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_2qEuALmnEeOtbs0XOV6d5g" name="prop_std_enthalpy_vaporization" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7VpFQLmnEeOtbs0XOV6d5g" name="prop_std_entropy_vaporization" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_j9y_oLmoEeOtbs0XOV6d5g" name="prop_std_liq_molar_entropy" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_pqZ9ILmoEeOtbs0XOV6d5g" name="prop_std_gas_molar_entropy" visibility="protected" type="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_5SPN0LnNEeOtbs0XOV6d5g" name="prop_liq_heat_capacity" visibility="protected" type="_DEu-QLmwEeOtbs0XOV6d5g"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_MtDnwLnOEeOtbs0XOV6d5g" name="prop_gas_heat_capacity_cp" visibility="protected" type="_DEu-QLmwEeOtbs0XOV6d5g"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_TIhPULnOEeOtbs0XOV6d5g" name="prop_gas_heat_capacity_cv" visibility="protected" type="_DEu-QLmwEeOtbs0XOV6d5g"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_cpuv0LkeEeODVf6soNxjVQ" name="ThermodynamicSystem" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Aq7FILkqEeODVf6soNxjVQ" name="qty_temperature" visibility="protected" type="_Cuec0LkgEeODVf6soNxjVQ" aggregation="composite" association="_Aq9hYLkqEeODVf6soNxjVQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Aq7FIbkqEeODVf6soNxjVQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Aq7FIrkqEeODVf6soNxjVQ" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_RdqJcLmhEeOtbs0XOV6d5g" name="qty_pressure" visibility="protected"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_uLAz0LmjEeOtbs0XOV6d5g" name="qty_molar_volume" visibility="protected" type="_Cuec0LkgEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_WE168LkoEeODVf6soNxjVQ" name="qty_molar_entropy" visibility="protected" type="_Cuec0LkgEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_jX66kLkoEeODVf6soNxjVQ" name="qty_molar_enthalpy" visibility="protected" type="_Cuec0LkgEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_A2obULkpEeODVf6soNxjVQ" name="qty_activity_coefficients" visibility="protected"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_FTbMMLkoEeODVf6soNxjVQ" name="prop_physical_state" visibility="protected" type="_1bj7oLknEeODVf6soNxjVQ" aggregation="shared" association="_FTbzQLkoEeODVf6soNxjVQ">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_3EtugLmaEeODVf6soNxjVQ" annotatedElement="_FTbMMLkoEeODVf6soNxjVQ">
+        <body>Pysical state of the thermodynamic System :&#xD;
+					-liquid&#xD;
+					-vapor&#xD;
+					-liquid/vapor (diphasic system)&#xD;
+					TODO implement liq/liq/vap therm systems</body>
+      </ownedComment>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FTbMMbkoEeODVf6soNxjVQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FTbMMrkoEeODVf6soNxjVQ" value="1"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_cDgW4LnaEeOtbs0XOV6d5g" name="Operation1"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Cuec0LkgEeODVf6soNxjVQ" name="PhysicalQuantity">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_KBmjkLnNEeOtbs0XOV6d5g" name="value" visibility="protected">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_oh2tALkhEeODVf6soNxjVQ" name="ThermodynamicProperty">
+    <generalization xmi:type="uml:Generalization" xmi:id="_-tUpoLkhEeODVf6soNxjVQ" general="_Cuec0LkgEeODVf6soNxjVQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_8ePwsLkmEeODVf6soNxjVQ" name="ThermodynamicModel">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ZwxG8LnUEeOtbs0XOV6d5g" name="thermodynamic_system" type="_cpuv0LkeEeODVf6soNxjVQ" association="_ZwxuALnUEeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZwxG8bnUEeOtbs0XOV6d5g"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZwxG8rnUEeOtbs0XOV6d5g" value="*"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_XYugQLnOEeOtbs0XOV6d5g" name="calc_molar_enthalpy">
+      <ownedParameter xmi:type="uml:Parameter" xmi:id="_mHbwYLnOEeOtbs0XOV6d5g" name="system" type="_cpuv0LkeEeODVf6soNxjVQ" effect="read"/>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_92f9ELkmEeODVf6soNxjVQ" name="EquationOfState">
+    <generalization xmi:type="uml:Generalization" xmi:id="_DbxjgLknEeODVf6soNxjVQ" general="_8ePwsLkmEeODVf6soNxjVQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="__YKkILkmEeODVf6soNxjVQ" name="ActivityCoefficientModel">
+    <generalization xmi:type="uml:Generalization" xmi:id="_EEUKMLknEeODVf6soNxjVQ" general="_8ePwsLkmEeODVf6soNxjVQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_1bj7oLknEeODVf6soNxjVQ" name="PhysicalState">
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_885mILknEeODVf6soNxjVQ" name="liquid"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_-dw78LknEeODVf6soNxjVQ" name="vapor"/>
+    <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_CtXv8LkoEeODVf6soNxjVQ" name="liqvap"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_FTbzQLkoEeODVf6soNxjVQ" name="mixture_physicalState_1" memberEnd="_FTbzQbkoEeODVf6soNxjVQ _FTbMMLkoEeODVf6soNxjVQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_FTbzQbkoEeODVf6soNxjVQ" name="owner" type="_cpuv0LkeEeODVf6soNxjVQ" association="_FTbzQLkoEeODVf6soNxjVQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FTbzQrkoEeODVf6soNxjVQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FTbzQ7koEeODVf6soNxjVQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_2zAk0LkpEeODVf6soNxjVQ" name="compound_chemicalProperty_1" memberEnd="_2zAk0bkpEeODVf6soNxjVQ _2y_9wLkpEeODVf6soNxjVQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_2zAk0bkpEeODVf6soNxjVQ" name="owner" type="_ban4YLkeEeODVf6soNxjVQ" association="_2zAk0LkpEeODVf6soNxjVQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2zAk0rkpEeODVf6soNxjVQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2zAk07kpEeODVf6soNxjVQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Aq9hYLkqEeODVf6soNxjVQ" name="mixture_intensivePhysicalQty_1" memberEnd="_Aq9hYbkqEeODVf6soNxjVQ _Aq7FILkqEeODVf6soNxjVQ">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_Aq9hYbkqEeODVf6soNxjVQ" name="owner" type="_cpuv0LkeEeODVf6soNxjVQ" association="_Aq9hYLkqEeODVf6soNxjVQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Aq9hYrkqEeODVf6soNxjVQ" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Aq9hY7kqEeODVf6soNxjVQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_MtWVMLkqEeODVf6soNxjVQ" name="Phase">
+    <generalization xmi:type="uml:Generalization" xmi:id="_rOLvYLksEeODVf6soNxjVQ" general="_cpuv0LkeEeODVf6soNxjVQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_OJdG0LkqEeODVf6soNxjVQ" name="LiquidPhase">
+    <generalization xmi:type="uml:Generalization" xmi:id="_gq5owLkqEeODVf6soNxjVQ" general="_MtWVMLkqEeODVf6soNxjVQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_PoKggLkqEeODVf6soNxjVQ" name="VaporPhase">
+    <generalization xmi:type="uml:Generalization" xmi:id="_hCUDMLkqEeODVf6soNxjVQ" general="_MtWVMLkqEeODVf6soNxjVQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_DEu-QLmwEeOtbs0XOV6d5g" name="DependentThrmProperty">
+    <generalization xmi:type="uml:Generalization" xmi:id="_v7ltsLmwEeOtbs0XOV6d5g" general="_oh2tALkhEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ohgi8LnKEeOtbs0XOV6d5g" name="dependency_formulation">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_ZwxuALnUEeOtbs0XOV6d5g" name="thermodynamicModel_mixture_1" memberEnd="_ZwxuAbnUEeOtbs0XOV6d5g _ZwxG8LnUEeOtbs0XOV6d5g" navigableOwnedEnd="_ZwxuAbnUEeOtbs0XOV6d5g">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_ZwxuAbnUEeOtbs0XOV6d5g" name="thermodynamic_calculator_set" type="_xZQVALnxEeOtbs0XOV6d5g" association="_ZwxuALnUEeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ZwxuArnUEeOtbs0XOV6d5g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ZwxuA7nUEeOtbs0XOV6d5g" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_q6JNQLnVEeOtbs0XOV6d5g" name="Mixture">
+    <generalization xmi:type="uml:Generalization" xmi:id="_2opbwLnVEeOtbs0XOV6d5g" general="_cpuv0LkeEeODVf6soNxjVQ"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_looicLn4EeOtbs0XOV6d5g" name="phase" type="_MtWVMLkqEeODVf6soNxjVQ" aggregation="composite" association="_lopJgLn4EeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_looicbn4EeOtbs0XOV6d5g" value="2"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_looicrn4EeOtbs0XOV6d5g" value="2"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_xZQVALnxEeOtbs0XOV6d5g" name="ThermodynamicCalculatorSet">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_YHvYALnyEeOtbs0XOV6d5g" name="thermodynamicModel" type="_8ePwsLkmEeODVf6soNxjVQ" association="_YHv_ELnyEeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YHvYAbnyEeOtbs0XOV6d5g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YHvYArnyEeOtbs0XOV6d5g" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_yAlWkLn4EeOtbs0XOV6d5g" name="compound" type="_ban4YLkeEeODVf6soNxjVQ" aggregation="composite" association="_yAl9oLn4EeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yAlWkbn4EeOtbs0XOV6d5g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yAlWkrn4EeOtbs0XOV6d5g" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_YHv_ELnyEeOtbs0XOV6d5g" name="thermodynamicCalculatorSet_thermodynamicModel_1" memberEnd="_YHv_EbnyEeOtbs0XOV6d5g _YHvYALnyEeOtbs0XOV6d5g">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_YHv_EbnyEeOtbs0XOV6d5g" name="thermodynamicCalculatorSet" type="_xZQVALnxEeOtbs0XOV6d5g" association="_YHv_ELnyEeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YHv_ErnyEeOtbs0XOV6d5g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YHv_E7nyEeOtbs0XOV6d5g" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_lopJgLn4EeOtbs0XOV6d5g" name="mixture_phase_1" memberEnd="_lopJgbn4EeOtbs0XOV6d5g _looicLn4EeOtbs0XOV6d5g">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_lopJgbn4EeOtbs0XOV6d5g" name="owner" type="_q6JNQLnVEeOtbs0XOV6d5g" association="_lopJgLn4EeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lopJgrn4EeOtbs0XOV6d5g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lopJg7n4EeOtbs0XOV6d5g" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_yAl9oLn4EeOtbs0XOV6d5g" name="thermodynamicCalculatorSet_compound_1" memberEnd="_yAl9obn4EeOtbs0XOV6d5g _yAlWkLn4EeOtbs0XOV6d5g">
+    <ownedEnd xmi:type="uml:Property" xmi:id="_yAl9obn4EeOtbs0XOV6d5g" name="owner" type="_xZQVALnxEeOtbs0XOV6d5g" association="_yAl9oLn4EeOtbs0XOV6d5g">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yAl9orn4EeOtbs0XOV6d5g" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yAl9o7n4EeOtbs0XOV6d5g" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
