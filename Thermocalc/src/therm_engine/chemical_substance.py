@@ -66,7 +66,7 @@ class ChemicalSubstance(object):
         conn.close()
 
 
-def AddDBConstantProperty(id_substance, name, value, unit):
+def AddDB(id_substance, name, value, unit):
     conn = pymysql.connect(host='127.0.0.1', 
                            port=3306, 
                            user='root', 
@@ -117,12 +117,12 @@ def AddDBConstantProperty(id_substance, name, value, unit):
 if __name__ == '__main__':
     
     try :
-        AddDBConstantProperty(1, 'critical_compressibility_factor', 3.2 , '-')
+        AddDB(1, 'critical_compressibility_factor', 3.2 , '-')
     except DatabaseError as e :
         print('error :', e.value)
     
     try :
-        AddDBConstantProperty(1, 'critical_temperature', 3.2 , '-')
+        AddDB(1, 'critical_temperature', 3.2 , '-')
     except DatabaseError as e :
         print('error :', e.value)
         
