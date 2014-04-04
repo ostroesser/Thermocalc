@@ -112,6 +112,7 @@ def AddDBConstantProperty(id_substance, name, value, unit):
     conn.commit()
     conn.close()
     
+    
         
 if __name__ == '__main__':
     
