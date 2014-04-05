@@ -26,8 +26,8 @@ class PhysicalQuantity(object):
         self.unit = unit
 
     def __repr__(self, *args, **kwargs):
-        return '{0:.2f} {1:10}'.format(self.value, self.unit)
-        
+        return '{} {}'.format(str(self.value).ljust(15), self.unit.ljust(10))
+    
 class TemperatureDependentProperty(PhysicalQuantity):
     """
     Represents a property of which the value depends on temperature
@@ -37,9 +37,8 @@ class TemperatureDependentProperty(PhysicalQuantity):
     
     """
     
-    def __init__(self, unit, formulation_code):
-        self.value = 'Temperature dependent !'
+    def __init__(self, unit, formulation_code=100):
+        self.value = '-'
         self.unit = unit
         self.formulation_code = formulation_code
-        
-        
+   

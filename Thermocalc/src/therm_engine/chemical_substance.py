@@ -5,10 +5,10 @@ substances and their properties
 @author: Olivier Stroesser
 """
 
-from therm_engine.properties import PhysicalQuantity
-from therm_engine.errors import *
 import pymysql
 
+from therm_engine.properties import PhysicalQuantity,\
+    TemperatureDependentProperty
 
 
 class ChemicalSubstance(object):
@@ -30,102 +30,156 @@ class ChemicalSubstance(object):
         """
         Constructor
         """
+        self.name = "SUBSTANCE"
         self.id_substance = id_substance
         self.properties = []
         self.property = {}
 
         # Connection to MySQL chemical database
-        conn = pymysql.connect(host='127.0.0.1', 
-                               port=3306, 
-                               user='olivier', 
-                               passwd='drouik', 
+        conn = pymysql.connect(host='127.0.0.1',
+                               port=3306,
+                               user='olivier',
+                               passwd='drouik',
                                db='therm_db')
         cur = conn.cursor()
         
         cur.execute("""
-        SELECT DISTINCT therm_db.constantproperty.name, value, unit
-        FROM therm_db.substanceconstproperties
-        JOIN therm_db.substance on 
-            therm_db.substanceconstproperties.id_substance = 
-            therm_db.substance.id_substance
-        JOIN therm_db.constantproperty on 
-            therm_db.substanceconstproperties.id_constant_property = 
-            therm_db.constantproperty.id_constant_property
-        WHERE therm_db.substance.id_substance = """ + str(self.id_substance)
-                    )
-        i=0
+            SELECT DISTINCT constantproperty.name, 
+            constantproperty.value, constantproperty.unit
+            FROM substanceconstproperties
+            JOIN substance on substanceconstproperties.id_substance = 
+                substance.id_substance
+            JOIN constantproperty on 
+                substanceconstproperties.id_constant_property = 
+                constantproperty.id_constant_property
+            WHERE substance.id_substance = {}
+            """.format(str(id_substance)))
+        i = 0
         for name, value, unit in cur.fetchall():
-            self.properties.append(PhysicalQuantity(value, unit ))
-            
-            #Binding of a dictionary for easy access to substance properties
+            self.properties.append(PhysicalQuantity(value, unit))
+            # Binding of a dictionary for easy access to substance properties
+            self.property[name] = self.properties[i]
+            i += 1
+        
+        cur.execute(""" 
+            SELECT DISTINCT tdependentproperty.name, tdependentproperty.unit
+            FROM SubstancetDependentProperty
+            JOIN substance on SubstancetDependentProperty.id_substance = 
+                substance.id_substance
+            JOIN tdependentproperty on 
+                SubstancetDependentProperty.id_t_dependent_property = 
+                tDependentProperty.id_t_dependent_property
+            WHERE substance.id_substance = {}
+            """.format(str(id_substance)))
+        
+        for name, unit in cur.fetchall():
+            self.properties.append(TemperatureDependentProperty(unit))
+            # Binding of a dictionary for easy access to substance properties
             self.property[name] = self.properties[i]
             i += 1
             
         # Disconnect from db
         cur.close()
         conn.close()
+    def __repr__(self, *args, **kwargs):
+        reprs = self.name.center(80,'=') + "\n"
+        for name, prop in substance.property.items() :
+            reprs += '{0:35} {1:1}'.format(name, prop)
+            reprs += "\n"
+        return reprs    
 
-
-def AddDBConstantProperty(id_substance, name, value, unit):
-    conn = pymysql.connect(host='127.0.0.1', 
-                           port=3306, 
-                           user='root', 
-                           passwd='drouik', 
+def AddDBProperty(id_substance, name, unit, value='NoValue'):
+    """
+    Add a property to a substance
+    If the 'value' argument is omitted, a temperature-dependent
+    property is added
+    """
+    if value == 'NoValue' :
+        # Temperature dependent properties SQL queries
+        select_properties = """ 
+            SELECT DISTINCT tdependentproperty.id_t_dependent_property, 
+            tdependentproperty.name
+            FROM SubstancetDependentProperty
+            JOIN substance on SubstancetDependentProperty.id_substance = 
+                substance.id_substance
+            JOIN tdependentproperty on 
+                SubstancetDependentProperty.id_t_dependent_property = 
+                tDependentProperty.id_t_dependent_property
+            WHERE substance.id_substance = {}
+            """.format(str(id_substance))
+            
+        update_properties = """ 
+            UPDATE tDependentProperty  
+            SET unit = '{}'
+            WHERE tDependentProperty.id_t_dependent_property =
+            """.format(str(unit))
+        
+        insert_properties = """
+            INSERT INTO tDependentProperty (name, unit)
+            VALUES ('{}', '{}');
+            INSERT INTO SubstancetDependentProperty 
+                (id_substance, id_t_dependent_property)
+            VALUES ({}, last_insert_id());
+            """.format(name, unit, str(id_substance))
+        
+    else :
+        # constant properties SQL queries
+        select_properties = """
+            SELECT DISTINCT constantproperty.id_constant_property, 
+            constantproperty.name
+            FROM substanceconstproperties
+            JOIN substance on substanceconstproperties.id_substance = 
+                substance.id_substance
+            JOIN constantproperty on 
+                substanceconstproperties.id_constant_property = 
+                constantproperty.id_constant_property
+            WHERE substance.id_substance = {}
+            """.format(str(id_substance))
+        
+        update_properties = """ 
+            UPDATE constantproperty
+            SET value = {}, unit = '{}'
+            WHERE constantproperty.id_constant_property = 
+            """.format(str(value), unit)
+        
+        insert_properties = """
+            INSERT INTO constantproperty (name, value, unit)
+            VALUES ('{}', {}, '{}');
+            INSERT INTO substanceconstproperties
+            (id_substance, id_constant_property)
+            VALUES ({}, last_insert_id());
+            """.format(name, str(value), unit, str(id_substance))
+        
+    update = False
+    
+    conn = pymysql.connect(host='127.0.0.1',
+                           port=3306,
+                           user='root',
+                           passwd='drouik',
                            db='therm_db')
     cur = conn.cursor()
-    cur.execute("""
-        SELECT DISTINCT therm_db.constantproperty.id_constant_property, 
-        therm_db.constantproperty.name
-        FROM therm_db.substanceconstproperties
-        JOIN therm_db.substance on 
-            therm_db.substanceconstproperties.id_substance = 
-            therm_db.substance.id_substance
-        JOIN therm_db.constantproperty on 
-            therm_db.substanceconstproperties.id_constant_property = 
-            therm_db.constantproperty.id_constant_property
-        WHERE therm_db.substance.id_substance = """ + str(id_substance)
-                )
+    cur.execute(select_properties)
     for prop_id, pname in cur.fetchall():
-        if pname == name : # [0] cause pname is a tuple
+        if pname == name :  # if property already exists
             update = True
             break
     
     if update:
-
-        cur.execute(""" 
-            UPDATE therm_db.constantproperty
-            SET value = """ + str(value)+ ", unit = '" + unit +"'\
-            WHERE therm_db.constantproperty.id_constant_property = " + 
-            str(prop_id))
+        cur.execute(update_properties + str(prop_id))
     else:
-        cur.execute("""
-            INSERT INTO therm_db.constantproperty (name, value, unit)
-            VALUES ('"""+ name + "', " + str(value) + ", '" + unit +"')")
-        
-        cur.execute("""
-            INSERT INTO therm_db.substanceconstproperties 
-            (id_substance, id_constant_property)
-            VALUES (""" +str(id_substance)+ """, last_insert_id())
-            """)
+
+        cur.execute(insert_properties)
 
     cur.close()
     conn.commit()
     conn.close()
-    
-    
-        
+
 if __name__ == '__main__':
-    
-    try :
-        AddDBConstantProperty(1, 'critical_compressibility_factor', 3.2 , '-')
-    except DatabaseError as e :
-        print('error :', e.value)
-    
-    try :
-        AddDBConstantProperty(1, 'critical_temperature', 3.2 , '-')
-    except DatabaseError as e :
-        print('error :', e.value)
-        
+#     
+    AddDBProperty(1, 'gas_ideal_specific_heat', 'J/mol/K')    
+#     AddDBProperty(1, 'van_der_waals_volume', 'm^3/mol', 0.45)
     substance = ChemicalSubstance(1)
-    print(substance.property['critical_temperature'])
-    print(substance.property['molecular_weight'])
+    print(substance)
+    
+    
+
